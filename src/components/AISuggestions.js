@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
+import ClaudeAPI from '../services/ClaudeAPI';
 import './AISuggestions.css';
 
-const AISuggestions = ({ suggestions, onApplySuggestion }) => {
+const AISuggestions = ({ suggestions, onApplySuggestion, selectedElement }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [customPrompt, setCustomPrompt] = useState('');
+  const [customSuggestions, setCustomSuggestions] = useState([]);
+  
+  // Initialize Claude API
+  const claudeAPI = new ClaudeAPI();
 
   const handleRequestCustomSuggestion = async () => {
-    if (!customPrompt.trim()) return;
+    if (!customPrompt.trim() || !selectedElement) return;
     
     setIsLoading(true);
     
-    // This would be your actual Claude API call
-    // For demo purposes, we'll simulate a response after a delay
-    setTimeout(() => {
-      // Mock response
-      console.log('Custom suggestion requested:', customPrompt);
-      setIsLoading(false);
+    try {
+      // Get advice from Claude API
+      const advice = await claudeAPI.getCustomAdvice(customPrompt, selectedElement);
+      
+      // Add the new suggestion to the custom suggestions
+      setCustomSuggestions([...customSuggestions, advice]);
+      
+      // Clear the prompt
       setCustomPrompt('');
-    }, 1500);
+    } catch (error) {
+      console.error('Error getting custom advice:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  // Combine default and custom suggestions
+  const allSuggestions = [...suggestions, ...customSuggestions];
 
   return (
     <div className={`ai-suggestions ${isCollapsed ? 'collapsed' : ''}`}>
@@ -33,14 +47,14 @@ const AISuggestions = ({ suggestions, onApplySuggestion }) => {
       
       {!isCollapsed && (
         <div className="suggestions-content">
-          {suggestions.length === 0 ? (
+          {allSuggestions.length === 0 ? (
             <div className="empty-suggestions">
               <p>Select an element to get AI suggestions</p>
             </div>
           ) : (
             <>
               <div className="suggestions-list">
-                {suggestions.map((suggestion, index) => (
+                {allSuggestions.map((suggestion, index) => (
                   <div key={index} className="suggestion-item">
                     <p>{suggestion}</p>
                     <button 
@@ -58,12 +72,12 @@ const AISuggestions = ({ suggestions, onApplySuggestion }) => {
                   placeholder="Ask Claude for advice on this element..."
                   value={customPrompt}
                   onChange={(e) => setCustomPrompt(e.target.value)}
-                  disabled={isLoading}
+                  disabled={isLoading || !selectedElement}
                 />
                 <button 
                   className="request-button"
                   onClick={handleRequestCustomSuggestion}
-                  disabled={isLoading || !customPrompt.trim()}
+                  disabled={isLoading || !customPrompt.trim() || !selectedElement}
                 >
                   {isLoading ? 'Thinking...' : 'Ask Claude'}
                 </button>
