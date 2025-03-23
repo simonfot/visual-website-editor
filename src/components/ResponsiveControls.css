@@ -1,0 +1,69 @@
+.responsive-controls {
+  padding: 8px 16px;
+  background-color: var(--panel-bg);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.viewport-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.viewport-button {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 13px;
+}
+
+.viewport-button:hover {
+  background-color: #f5f5f5;
+}
+
+.viewport-button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.viewport-icon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.viewport-info {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  gap: 8px;
+}
+
+.viewport-width {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .viewport-label {
+    display: none;
+  }
+  
+  .viewport-button {
+    padding: 6px 8px;
+  }
+  
+  .viewport-icon {
+    margin-right: 0;
+  }
+}
