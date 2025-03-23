@@ -7,9 +7,9 @@ import Toolbar from './components/Toolbar';
 import Modal from './components/Modal';
 import FileImporter from './components/FileImporter';
 import CodeExporter from './components/CodeExporter';
-import HistoryManager from './utils/HistoryManager';
 import ComponentLibrary from './components/ComponentLibrary';
-import ResponsiveControls from './components/ResponsiveControls';
+import HistoryManager from './utils/HistoryManager';
+import keyboardShortcuts from './utils/KeyboardShortcuts';
 import './App.css';
 
 function App() {
@@ -276,6 +276,25 @@ function App() {
     setIsImportModalOpen(false);
   };
 
+  // Initialize keyboard shortcuts
+  useEffect(() => {
+    // Register keyboard shortcuts
+    keyboardShortcuts.register('undo', { key: 'z', ctrl: true }, handleUndo);
+    keyboardShortcuts.register('redo', { key: 'y', ctrl: true }, handleRedo);
+    keyboardShortcuts.register('delete', { key: 'Delete' }, () => {
+      if (selectedElement) {
+        deleteElement(selectedElement.id);
+      }
+    });
+    
+    // Clean up shortcuts when component unmounts
+    return () => {
+      keyboardShortcuts.unregister('undo');
+      keyboardShortcuts.unregister('redo');
+      keyboardShortcuts.unregister('delete');
+    };
+  }, [selectedElement]); // Dependency on selectedElement for delete shortcut
+
   // Initialize history manager
   useEffect(() => {
     historyManager.current = new HistoryManager(initialProject);
@@ -306,11 +325,6 @@ function App() {
         />
         
         <div className="canvas-container">
-          <ResponsiveControls 
-            viewport={viewport} 
-            onViewportChange={setViewport} 
-          />
-          
           <VisualEditor 
             elements={project.pages[0].elements}
             selectedElement={selectedElement}
