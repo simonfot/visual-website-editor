@@ -35,13 +35,25 @@ body {
   overflow: hidden;
 }
 
-/* VisualEditor */
+/* Canvas container for responsive design */
+.canvas-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  padding: 20px;
+}
+
+/* Visual Editor */
 .visual-editor {
   flex: 1;
   background-color: var(--editor-bg);
   position: relative;
   overflow: auto;
   height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 
 .editor-grid {
@@ -111,4 +123,37 @@ body {
   border-left: 1px solid var(--border-color);
   background-color: var(--panel-bg);
   overflow: hidden;
+}
+
+/* Keyboard shortcuts tooltip */
+.shortcut-hint {
+  display: inline-block;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin-left: 8px;
+  font-size: 11px;
+  color: #666;
+  font-family: monospace;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .editor-container {
+    flex-direction: column;
+  }
+  
+  .right-panel {
+    width: 100%;
+    height: 300px;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .project-navigator {
+    width: 100%;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
 }
