@@ -1,0 +1,114 @@
+:root {
+  --primary-color: #0066cc;
+  --secondary-color: #f8f9fa;
+  --border-color: #e0e0e0;
+  --text-color: #333;
+  --panel-bg: #fff;
+  --editor-bg: #f9f9f9;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --danger-color: #f44336;
+  --panel-width: 250px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.editor-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* VisualEditor */
+.visual-editor {
+  flex: 1;
+  background-color: var(--editor-bg);
+  position: relative;
+  overflow: auto;
+  height: 100%;
+}
+
+.editor-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  pointer-events: none;
+}
+
+.editor-element {
+  position: absolute;
+  pointer-events: all;
+}
+
+.editor-element.selected {
+  outline: 2px solid var(--primary-color);
+  z-index: 10;
+}
+
+.element-controls {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  display: flex;
+}
+
+.delete-button {
+  width: 20px;
+  height: 20px;
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary-color);
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.resize-handle.bottom-right {
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+}
+
+/* Right panel contains properties and AI suggestions */
+.right-panel {
+  width: var(--panel-width);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border-color);
+  background-color: var(--panel-bg);
+  overflow: hidden;
+}
