@@ -1,0 +1,144 @@
+.ai-suggestions {
+  background-color: #fff;
+  transition: all 0.3s;
+  border-top: 1px solid var(--border-color);
+  overflow: hidden;
+  max-height: 50%;
+}
+
+.ai-suggestions.collapsed {
+  max-height: 50px;
+}
+
+.panel-header {
+  padding: 15px;
+  cursor: pointer;
+  user-select: none;
+  background-color: #f4f8ff;
+  transition: background-color 0.2s;
+}
+
+.panel-header:hover {
+  background-color: #e6f0ff;
+}
+
+.panel-header h3 {
+  font-size: 14px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  color: #0066cc;
+}
+
+.ai-icon {
+  margin-right: 8px;
+}
+
+.collapse-icon {
+  margin-left: auto;
+  font-size: 10px;
+  transition: transform 0.2s;
+}
+
+.collapse-icon.collapsed {
+  transform: rotate(-90deg);
+}
+
+.suggestions-content {
+  padding: 0 15px 15px;
+}
+
+.suggestions-list {
+  margin-bottom: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  background-color: #f9f9f9;
+  border-left: 3px solid #0066cc;
+  border-radius: 0 6px 6px 0;
+  padding: 12px;
+  margin-bottom: 10px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.suggestion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.suggestion-item p {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.apply-button {
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.apply-button:hover {
+  background-color: #3d9140;
+}
+
+.custom-suggestion {
+  margin-top: 15px;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.custom-suggestion textarea {
+  width: 100%;
+  height: 80px;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  resize: none;
+  font-family: inherit;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.request-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.request-button:hover:not(:disabled) {
+  background-color: #0057b3;
+}
+
+.request-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.empty-suggestions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  margin: 15px 0;
+}
