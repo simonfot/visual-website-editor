@@ -1,0 +1,101 @@
+.visual-editor {
+  flex: 1;
+  background-color: var(--editor-bg);
+  position: relative;
+  overflow: auto;
+  height: 100%;
+}
+
+.editor-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  pointer-events: none;
+}
+
+.editor-element {
+  position: absolute;
+  pointer-events: all;
+  user-select: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.editor-element:hover {
+  box-shadow: 0 0 0 1px rgba(0, 102, 204, 0.3);
+}
+
+.editor-element.selected {
+  outline: 2px solid var(--primary-color);
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.element-controls {
+  position: absolute;
+  top: -25px;
+  right: 0;
+  display: flex;
+  gap: 5px;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  padding: 2px;
+  z-index: 20;
+}
+
+.delete-button {
+  width: 20px;
+  height: 20px;
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary-color);
+  border: 1px solid white;
+  border-radius: 50%;
+  z-index: 20;
+}
+
+.resize-handle.bottom-right {
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: -5px;
+  left: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.top-right {
+  top: -5px;
+  right: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.top-left {
+  top: -5px;
+  left: -5px;
+  cursor: nwse-resize;
+}
