@@ -4,6 +4,38 @@
   position: relative;
   overflow: auto;
   height: 100%;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 0 1px var(--border-color);
+}
+
+/* Responsive viewport styles */
+.visual-editor.viewport-desktop {
+  width: 100%;
+}
+
+.visual-editor.viewport-tablet {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.visual-editor.viewport-mobile {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.viewport-overlay {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 100;
 }
 
 .editor-grid {
@@ -98,4 +130,13 @@
   top: -5px;
   left: -5px;
   cursor: nwse-resize;
+}
+
+/* Canvas container for responsive design */
+.canvas-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  background-color: #e5e5e5;
 }
