@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 class ClaudeAPI {
-  constructor(apiKey) {
-    this.apiKey = apiKey;
+  constructor() {
+    // Get API key from environment variables
+    this.apiKey = process.env.REACT_APP_CLAUDE_API_KEY;
     this.baseURL = 'https://api.anthropic.com/v1';
     this.client = axios.create({
       baseURL: this.baseURL,
