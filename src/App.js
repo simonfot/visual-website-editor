@@ -302,6 +302,24 @@ function App() {
     setCanRedo(false);
   }, []);
 
+  // Function to apply AI suggestions
+  const applySuggestion = (suggestionIndex) => {
+    // In a real implementation, this would interpret and apply the suggestion
+    console.log(`Applied suggestion ${suggestionIndex}`);
+    
+    // Example implementation for demonstration
+    if (selectedElement && selectedElement.type === 'button' && suggestionIndex === 0) {
+      // Example: Apply hover effect suggestion by adding a transition
+      updateElement(selectedElement.id, {
+        style: {
+          ...selectedElement.style,
+          transition: 'all 0.3s ease',
+          cursor: 'pointer'
+        }
+      });
+    }
+  };
+
   return (
     <div className="app">
       <Toolbar 
@@ -344,10 +362,8 @@ function App() {
           
           <AISuggestions 
             suggestions={suggestions}
-            onApplySuggestion={(suggestionIndex) => {
-              // Implement suggestion application logic
-              console.log(`Applied suggestion ${suggestionIndex}`);
-            }}
+            selectedElement={selectedElement}
+            onApplySuggestion={applySuggestion}
           />
         </div>
       </div>
